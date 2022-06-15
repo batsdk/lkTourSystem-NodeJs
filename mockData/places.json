@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Sigiriya",
+    "description": "Sigiriya or Sinhagiri is an ancient rock fortress located in the northern Matale District near the town of Dambulla in the Central Province, Sri Lanka. It is a site of historical and archaeological significance that is dominated by a massive column of rock approximately 180 metres high",
+    "address": "Rock front, Sigiriya 21120",
+    "images": "https://res.cloudinary.com/batzdk/image/upload/v1655283768/LkPlacesSystem/tmp-1-1655283766066_pkr2wn.jpg",
+    "budget": 50,
+    "district": "MATALE"
+  },
+  {
+    "name": "Adisham Hall",
+    "description": "Adisham Hall, or Adisham Bungalow is a country house near Haputale, in the Badulla District, Sri Lanka. At present, it houses the Adisham monastery of Saint Benedict. It has a relic of St. Sylvester at the chapel",
+    "address": "Adisham HallAdisham Rd, Haputale 90160",
+    "images": "https://res.cloudinary.com/batzdk/image/upload/v1655284063/LkPlacesSystem/tmp-1-1655284060935_flyeqt.jpg",
+    "budget": 70,
+    "district": "BADULLA"
+  }
+]
