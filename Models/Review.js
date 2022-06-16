@@ -26,8 +26,13 @@ const ReviewSchema = new mongoose.Schema(
       required: [true, "Must provide a place"],
       ref: "Place",
     },
+    rating: {
+      type: Number,
+      required: [true, "Must provide a rating"],
+      min: 1,
+      max: 10,
+    },
   },
   { timestamps: true }
 );
-
 module.exports = mongoose.model("Review", ReviewSchema);

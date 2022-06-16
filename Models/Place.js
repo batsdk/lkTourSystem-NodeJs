@@ -86,4 +86,13 @@ PlaceSchema.virtual("reviews", {
 // an index entails multiple fields
 PlaceSchema.index({ product: 1, user: 1 }, { unique: true });
 
+// ProductSchema.pre("remove", async function () {
+//   await this.model("Reviews").deleteMany({ product: this._id });
+// })
+
+// Removing all the reviews related to this place
+PlaceSchema.pre("remove", async function () {
+  await this.model("Review").deleteMany({ product: this._id });
+});
+
 module.exports = mongoose.model("Place", PlaceSchema);

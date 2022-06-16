@@ -1,7 +1,7 @@
 //* [X] Create Review - Only By registered users
-// [] Get Review
-// [] Get All Reviews
-// [] Delete Review - Only by who created it
+//* [X] Get Review
+//* [X] Get All Reviews
+// [] Delete Review - Only by who created it and Admin
 // [] Update Review - Only by who created it
 
 const Review = require("../Models/Review");
@@ -34,6 +34,13 @@ const createReview = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ msg: "Successfull", review });
 };
 
+//! Get All Reviews
+const getAllReviews = async (req, res) => {
+  const reviews = await Review.find({});
+
+  res.status(StatusCodes.OK).json({ nbReviews: reviews.length, reviews });
+};
+
 // ! Get Review
 const getReview = async (req, res) => {
   const { id } = req.params;
@@ -44,4 +51,16 @@ const getReview = async (req, res) => {
   res.status(StatusCodes.OK).json({ review });
 };
 
-module.exports = { createReview, getReview };
+//! Delete single Review
+const deleteReview = async (req, res) => {
+  const { id } = req.params;
+
+  const review = await Review.findOne({ _id: id });
+
+  if (!review) throw new Errors.BadRequestError("Review not found");
+
+  review.remove();
+  res.status(StatusCodes.OK).json({ review });
+};
+
+module.exports = { createReview, getReview, getAllReviews, deleteReview };

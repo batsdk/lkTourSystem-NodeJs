@@ -26,11 +26,12 @@ const onlyUsers = (req, res, next) => {
 const onlyAdmin = (req, res, next) => {
   const { userAccountType } = req.user;
 
-  if (!userAccountType.toLowerCase() === "admin") {
+  if (userAccountType !== "admin") {
+    // console.log("userAccountType : " + userAccountType);
     throw new Errors.unauthorized("Not authorized to access this route");
   }
 
-  console.log("Only admin property");
+  // console.log("Only admin property");
   next();
 };
 
