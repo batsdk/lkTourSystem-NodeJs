@@ -15,6 +15,7 @@ const router = Router();
 
 router.route("/").get(getAllPlaces).post(onlyUsers, createPlace);
 router.route("/upload").post(imageUpload);
+router.route("/:id").get(getPlace);
 router.route("/delete/:id").delete(deletePlace);
 
 module.exports = router;

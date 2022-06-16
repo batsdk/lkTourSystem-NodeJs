@@ -4,11 +4,11 @@ const fs = require("fs");
 const Place = require("../Models/Place");
 const Errors = require("../errors");
 
-// [] Get One
-//? [x] Get All
-//? [x] Update one
-//? [x] Delete One
-//? [x] Create One
+//? [X] Get One
+//? [X] Get All
+//? [X] Update one
+//? [X] Delete One
+//? [X] Create One
 
 // ! Get All Places
 const getAllPlaces = async (req, res) => {
@@ -20,9 +20,14 @@ const getAllPlaces = async (req, res) => {
 };
 
 // ! Get A Single Place
-// * Do this after creating review model
 const getPlace = async (req, res) => {
-  res.send("Get One");
+  const { id } = req.params;
+  const place = await Place.find({ _id: id }).populate("reviews");
+
+  if (!place || place.length <= 0)
+    throw new Errors.NotFoundError("No Place Found");
+
+  res.status(StatusCodes.OK).json({ msg: "Request Successful", place });
 };
 
 // ! Delete Place

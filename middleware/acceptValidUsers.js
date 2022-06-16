@@ -5,7 +5,9 @@ const onlyUsers = (req, res, next) => {
   const { token } = req.signedCookies;
 
   if (!token) {
-    throw new Errors.UnauthenticatedError("Invalid Authentication");
+    throw new Errors.UnauthenticatedError(
+      "Invalid Authentication || Must Register to have access to this route"
+    );
   }
 
   const {

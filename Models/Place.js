@@ -72,7 +72,18 @@ const PlaceSchema = new mongoose.Schema(
       ],
     },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+PlaceSchema.virtual("reviews", {
+  ref: "Review",
+  localField: "_id",
+  foreignField: "place",
+  justOne: false,
+});
+
+// User can only leave on review per product
+// an index entails multiple fields
+PlaceSchema.index({ product: 1, user: 1 }, { unique: true });
 
 module.exports = mongoose.model("Place", PlaceSchema);
