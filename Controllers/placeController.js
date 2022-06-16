@@ -4,11 +4,11 @@ const fs = require("fs");
 const Place = require("../Models/Place");
 const Errors = require("../errors");
 
-// [x] Get All
 // [] Get One
-// [x] Update one
-// [x] Delete One
-// [x] Create One
+//? [x] Get All
+//? [x] Update one
+//? [x] Delete One
+//? [x] Create One
 
 // ! Get All Places
 const getAllPlaces = async (req, res) => {

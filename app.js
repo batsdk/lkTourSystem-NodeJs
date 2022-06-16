@@ -33,10 +33,12 @@ app.use(
 // Import routes
 const authRouter = require("./Routes/authRouter");
 const placeRouter = require("./Routes/placeRouter");
+const reviewRouter = require("./Routes/reviewRouter");
 
 // routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/places", placeRouter);
+app.use("/api/v1/review", reviewRouter);
 
 // Extrra packages uses
 app.use(cookieParser(process.env.JWT_SECRET));
