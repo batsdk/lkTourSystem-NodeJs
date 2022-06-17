@@ -35,6 +35,10 @@ const PlaceSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    numOfReviews: {
+      type: Number,
+      default: 0,
+    },
     budget: {
       type: Number,
       min: 0,

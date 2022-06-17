@@ -1,8 +1,8 @@
 //* [X] Create Review - Only By registered users
 //* [X] Get Review
 //* [X] Get All Reviews
-// [] Delete Review - Only by who created it and Admin
-// [] Update Review - Only by who created it
+//* [X] Delete Review - Only by who created it and Admin
+//* [X] Update Review - Only by who created it
 
 const Review = require("../Models/Review");
 const Place = require("../Models/Place");
@@ -11,7 +11,7 @@ const Errors = require("../errors");
 
 // ! Create A Review
 const createReview = async (req, res) => {
-  const { title, comment, place } = req.body;
+  const { title, comment, place, rating } = req.body;
 
   const alreadyReviewed = await Review.findOne({
     place,
@@ -26,6 +26,7 @@ const createReview = async (req, res) => {
 
   const review = await Review.create({
     title,
+    rating,
     comment,
     place,
     user: req.user.userId,
@@ -59,8 +60,35 @@ const deleteReview = async (req, res) => {
 
   if (!review) throw new Errors.BadRequestError("Review not found");
 
-  review.remove();
+  if (review.user === req.user.userId || req.user.userAccountType) {
+    review.remove();
+    res.status(StatusCodes.OK).json({ review });
+  }
+
+  throw new Errors.BadRequestError("Doesn't have access to delete review");
+};
+
+//! Update Review
+const updateReview = async (req, res) => {
+  const { id } = req.params;
+  const { title, comment, rating } = req.body;
+  const review = await Review.findOne({ _id: id, user: req.user.userId });
+  if (!review) throw new Errors.BadRequestError("No Review found");
+  if (rating <= 0 || rating > 10)
+    throw new Errors.BadRequestError("Review must be between 0 and 10");
+
+  if (title) review.title = title;
+  if (comment) review.comment = comment;
+  if (rating) review.rating = rating;
+
+  review.save();
   res.status(StatusCodes.OK).json({ review });
 };
 
-module.exports = { createReview, getReview, getAllReviews, deleteReview };
+module.exports = {
+  updateReview,
+  createReview,
+  getReview,
+  getAllReviews,
+  deleteReview,
+};

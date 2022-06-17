@@ -9,6 +9,7 @@ const Errors = require("../errors");
 //? [X] Update one
 //? [X] Delete One
 //? [X] Create One
+// [] Add Query to Get All Places Route
 
 // ! Get All Places
 const getAllPlaces = async (req, res) => {

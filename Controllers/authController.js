@@ -3,6 +3,10 @@ const User = require("../Models/User");
 const { attachCookiesToResponse } = require("../Functions");
 const Errors = require("../errors");
 
+//? [X] Register
+//? [X] Login
+//? [X] Logout
+
 //! Register User
 const register = async (req, res) => {
   const { email, password, name } = req.body;
