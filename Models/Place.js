@@ -86,10 +86,6 @@ PlaceSchema.virtual("reviews", {
   justOne: false,
 });
 
-// User can only leave on review per product
-// an index entails multiple fields
-// PlaceSchema.index({ place: 1, user: 1 }, { unique: true });
-
 // ProductSchema.pre("remove", async function () {
 //   await this.model("Reviews").deleteMany({ product: this._id });
 // })

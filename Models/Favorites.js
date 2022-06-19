@@ -16,4 +16,8 @@ const FavoritesSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// * A user only can add to their favorites in one time
+// an index entails multiple fields
+FavoritesSchema.index({ place: 1, user: 1 }, { unique: true });
+
 module.exports = mongoose.model("Favorites", FavoritesSchema);

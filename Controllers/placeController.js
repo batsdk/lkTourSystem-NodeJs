@@ -10,6 +10,7 @@ const Errors = require("../errors");
 //? [X] Delete One
 //? [X] Create One
 // [] Add Query to Get All Places Route
+// [] Delete all reviews when deleting a place
 
 // ! Create Place
 const createPlace = async (req, res) => {
