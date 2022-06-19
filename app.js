@@ -34,11 +34,13 @@ app.use(
 const authRouter = require("./Routes/authRouter");
 const placeRouter = require("./Routes/placeRouter");
 const reviewRouter = require("./Routes/reviewRouter");
+const favoritesRouter = require("./Routes/favoriteRouter");
 
 // routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/places", placeRouter);
 app.use("/api/v1/review", reviewRouter);
+app.use("/api/v1/favorites", favoritesRouter);
 
 // Extrra packages uses
 app.use(cookieParser(process.env.JWT_SECRET));

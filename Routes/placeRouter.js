@@ -2,8 +2,8 @@ const { Router } = require("express");
 const {
   getPlace,
   deletePlace,
-  createPlace,
   editPlace,
+  createPlace,
   imageUpload,
   getAllPlaces,
 } = require("../Controllers/placeController");

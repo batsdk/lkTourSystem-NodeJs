@@ -11,6 +11,25 @@ const Errors = require("../errors");
 //? [X] Create One
 // [] Add Query to Get All Places Route
 
+// ! Create Place
+const createPlace = async (req, res) => {
+  const { name, description, address, images, budget, district } = req.body;
+
+  const user = req.user.userId;
+
+  const place = await Place.create({
+    name,
+    description,
+    address,
+    images,
+    budget,
+    district,
+    user,
+  });
+
+  res.status(StatusCodes.OK).json({ msg: "Place Created", place });
+};
+
 // ! Get All Places
 const getAllPlaces = async (req, res) => {
   const places = await Place.find({});
@@ -42,23 +61,6 @@ const deletePlace = async (req, res) => {
   place.remove();
 
   res.status(StatusCodes.OK).json({ msg: "Place Deleted", place });
-};
-
-// ! Create a new Place
-const createPlace = async (req, res) => {
-  const { name, description, address, images, budget, district } = req.body;
-
-  const place = await Place.create({
-    name,
-    description,
-    address,
-    images,
-    budget,
-    district,
-    user: req.user.userId,
-  });
-
-  res.status(StatusCodes.CREATED).json({ msg: "Place Created", place });
 };
 
 // ! Edit an exsisting place
@@ -109,8 +111,8 @@ const imageUpload = async (req, res) => {
 module.exports = {
   getPlace,
   deletePlace,
-  createPlace,
   editPlace,
   getAllPlaces,
   imageUpload,
+  createPlace,
 };
